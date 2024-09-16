@@ -15,6 +15,11 @@ if ! (which git); then
     apt install git -y
 fi
 
+if ! (which gh); then
+    echogreen "Installing Github CLI"
+    apt install gh -y
+fi
+
 if ! (which brew); then
     echogreen "Installing Homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -154,5 +159,8 @@ echo "============================================================"
 echo "Remember to set your git credentials:"
 echo " $ git config --global user.name \"<name>\""
 echo " $ git config --global user.email \"<email>\""
+echo ""
+echo "Remember to auth with Github:"
+echo " $ gh auth login"
 echo ""
 echo "Remember to install Jetbrains Toolbox: you only need to run the executable once."
