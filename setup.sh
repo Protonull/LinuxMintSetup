@@ -144,7 +144,7 @@ if ! (which mpv); then
     apt install mpv -y
 fi
 
-if [ -f "$(echo ~/.gitignore)" ]; then
+if ! [ -f "$(echo ~/.gitignore)" ]; then
     echogreen "Setting up global gitignore"
     curl -fsSL https://www.toptal.com/developers/gitignore/api/linux > ~/.gitignore
     git config --global core.excludesFile ~/.gitignore
