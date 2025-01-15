@@ -1,7 +1,7 @@
 # Bluetooth Issues
 
-Yes, you installed it without checking Bluetooth, you're an idiot, but you
-*did* find a fix.
+Yes, you installed LMDE without checking whether bluetooth works, you're an
+idiot, but you *did* find a fix.
 
 ## The issue
 
