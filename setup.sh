@@ -29,6 +29,8 @@ if ! (which brew); then
     brew install gcc
 fi
 
+brew update
+
 if ! (which lazygit); then
     echogreen "Installing lazygit"
     brew install lazygit
