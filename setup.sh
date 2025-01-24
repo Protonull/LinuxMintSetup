@@ -59,15 +59,6 @@ if ! (flatpak info com.github.tchx84.Flatseal); then
     flatpak install flathub com.github.tchx84.Flatseal -y
 fi
 
-if ! (
-    cd ~/Downloads/ &&
-    curl --proto "=https" --tlsv1.2 --show-error --output "jetbrains-toolbox-2.5.2.35332.tar.gz" --location "https://download.jetbrains.com/toolbox/jetbrains-toolbox-2.5.2.35332.tar.gz" &&
-    tar -xvzf "jetbrains-toolbox-2.5.2.35332.tar.gz" &&
-    ./jetbrains-toolbox-2.5.2.35332/jetbrains-toolbox
-); then
-    echored "Could not install Jetbrains Toolbox!"
-fi
-
 if ! (flatpak info com.vscodium.codium); then
     echogreen "Installing VSCodium"
     flatpak install flathub com.vscodium.codium -y
