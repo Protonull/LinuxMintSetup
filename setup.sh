@@ -97,11 +97,6 @@ if ! (flatpak info com.brave.Browser); then
     flatpak install flathub com.brave.Browser -y
 fi
 
-if (which firefox); then
-    echogreen "Removing Firefox browser"
-    apt remove firefox -y
-fi
-
 if ! (flatpak info com.discordapp.Discord); then
     echogreen "Installing Discord"
     flatpak install flathub com.discordapp.Discord -y
