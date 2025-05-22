@@ -118,23 +118,28 @@ if ! (flatpak info org.prismlauncher.PrismLauncher); then
 fi
 
 if ! (which bun); then
-    echogreen "Install Bun.sh"
+    echogreen "Installing Bun.sh"
     curl -fsSL https://bun.sh/install | bash
     echo "telemetry = false" > ~/.bunfig.toml
 fi
 
 if ! (which zig); then
-    echogreen "Install ziglang"
+    echogreen "Installing ziglang"
     brew install zig
 fi
 
 if ! (which zls); then
-    echogreen "Install zig language server"
+    echogreen "Installing zig language server"
     brew install zls
 fi
 
+if ! (which dart); then
+    echogreen "Installing Dart"
+    apt install dart -y
+fi
+
 if ! (which dropbox); then
-    echogreen "Install Dropbox"
+    echogreen "Installing Dropbox"
     apt install dropbox -y
     apt install nemo-dropbox -y
 fi
@@ -144,11 +149,6 @@ if ! (flatpak info flathub io.freetubeapp.FreeTube); then
     flatpak install flathub flathub io.freetubeapp.FreeTube -y
 fi
 
-if ! (which mpv); then
-    echogreen "Install MPV"
-    apt install mpv -y
-fi
-
 if ! [ -f "$(echo ~/.gitignore)" ]; then
     echogreen "Setting up global gitignore"
     curl -fsSL https://www.toptal.com/developers/gitignore/api/linux > ~/.gitignore
@@ -156,7 +156,7 @@ if ! [ -f "$(echo ~/.gitignore)" ]; then
 fi
 
 if ! (which yt-dlp); then
-    echogreen "Install Youtube Downloader"
+    echogreen "Installing Youtube Downloader"
     brew install yt-dlp
 fi
 
@@ -168,4 +168,7 @@ echo ""
 echo "Remember to auth with Github:"
 echo " $ gh auth login"
 echo ""
-echo "Remember to install Jetbrains Toolbox: you only need to run the executable once."
+echo "Remember to install Jetbrains Toolbox: you only need to run the tarball executable once."
+echo ""
+echo "Remember to install a Java version:"
+echo " $ sdk list java"
