@@ -61,6 +61,14 @@ if ! (flatpak info com.github.tchx84.Flatseal); then
     flatpak install flathub com.github.tchx84.Flatseal -y
 fi
 
+# Installing this as a flatpak WILL cause you problems if you intent to use it
+# as an IDE: sandboxing IDEs is just asking for trouble. If you've having
+# trouble locating a binary, like the Dart SDK (/usr/bin/dart), try doing:
+# $ flatpak run --command=sh com.vscodium.codium
+# $ which dart
+# if it cannot be found, you may find it within /run/host/bin/, which seems to
+# be a remapped /usr/bin/. You may need to enable the "All system libraries,
+# executables and static data" (host-os) option in Flatseal.
 if ! (flatpak info com.vscodium.codium); then
     echogreen "Installing VSCodium"
     flatpak install flathub com.vscodium.codium -y
