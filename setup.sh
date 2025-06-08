@@ -61,21 +61,17 @@ if ! (flatpak info com.github.tchx84.Flatseal); then
     flatpak install flathub com.github.tchx84.Flatseal -y
 fi
 
-# Installing this as a flatpak WILL cause you problems if you intent to use it
-# as an IDE: sandboxing IDEs is just asking for trouble. If you've having
-# trouble locating a binary, like the Dart SDK (/usr/bin/dart), try doing:
-# $ flatpak run --command=sh com.vscodium.codium
-# $ which dart
-# if it cannot be found, you may find it within /run/host/bin/, which seems to
-# be a remapped /usr/bin/. You may need to enable the "All system libraries,
-# executables and static data" (host-os) option in Flatseal.
-if ! (flatpak info com.vscodium.codium); then
+if ! (which codium); then
     echogreen "Installing VSCodium"
-    flatpak install flathub com.vscodium.codium -y
+    # https://vscodium.com/#install-on-debian-ubuntu-deb-package
+    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg | gpg --dearmor | dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+    echo 'deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main' | tee /etc/apt/sources.list.d/vscodium.list
+    apt update
+    apt install codium -y
 fi
 
 echogreen "Setting VSCodium as git editor"
-git config --global core.editor "flatpak run com.vscodium.codium --wait"
+git config --global core.editor "codium --wait"
 
 if ! (flatpak info it.mijorus.gearlever); then
     echogreen "Installing Gear Lever (AppImage installer)"
