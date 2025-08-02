@@ -15,6 +15,14 @@ if ! (which git); then
     apt install git -y
 fi
 
+git config --global core.autocrlf input
+
+if ! [ -f "$(echo ~/.gitignore)" ]; then
+    echogreen "Setting up global gitignore"
+    curl -fsSL https://www.toptal.com/developers/gitignore/api/linux > ~/.gitignore
+    git config --global core.excludesFile ~/.gitignore
+fi
+
 if ! (which gh); then
     echogreen "Installing Github CLI"
     apt install gh -y
@@ -143,12 +151,6 @@ fi
 if ! (flatpak info flathub io.freetubeapp.FreeTube); then
     echogreen "Installing FreeTube"
     flatpak install flathub flathub io.freetubeapp.FreeTube -y
-fi
-
-if ! [ -f "$(echo ~/.gitignore)" ]; then
-    echogreen "Setting up global gitignore"
-    curl -fsSL https://www.toptal.com/developers/gitignore/api/linux > ~/.gitignore
-    git config --global core.excludesFile ~/.gitignore
 fi
 
 if ! (which yt-dlp); then
